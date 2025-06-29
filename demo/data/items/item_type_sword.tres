@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EquippableItemType" load_steps=2 format=3 uid="uid://b2na04bvnxd3k"]
+
+[ext_resource type="Script" uid="uid://buo7xdusu2no1" path="res://demo/data_model/equippable_item_type.gd" id="1_qfv24"]
+
+[resource]
+script = ExtResource("1_qfv24")
+default_upgrades = {}
+name = "Sword"
+description = "A rusty sword."
+stats = {}
+metadata/_custom_type_script = "uid://buo7xdusu2no1"

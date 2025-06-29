@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MyContact" load_steps=4 format=3 uid="uid://6bgh06koosdu"]
+
+[ext_resource type="Script" uid="uid://cn1idu8yykvad" path="res://demo/data_model/address.gd" id="1_a35ll"]
+[ext_resource type="Script" uid="uid://ckkrfanenf78o" path="res://demo/data_model/contact.gd" id="2_xgv4o"]
+
+[sub_resource type="Resource" id="Resource_swjw0"]
+script = ExtResource("1_a35ll")
+address = "1675 E Altadena Dr"
+address_line2 = ""
+city = "Altadena"
+state = "CA"
+postal_code = "90210"
+country = "USA"
+metadata/_custom_type_script = "uid://cn1idu8yykvad"
+
+[resource]
+script = ExtResource("2_xgv4o")
+first_name = "Jane"
+last_name = "Smith"
+company = "ABC, Inc."
+title = "COO"
+phone_number = "555.123.4567"
+home_address = SubResource("Resource_swjw0")
+metadata/_custom_type_script = "uid://ckkrfanenf78o"

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MyContact" load_steps=4 format=3 uid="uid://c88b3sbmxok64"]
+
+[ext_resource type="Script" uid="uid://ckkrfanenf78o" path="res://demo/data_model/contact.gd" id="1_8tmu1"]
+[ext_resource type="Script" uid="uid://cn1idu8yykvad" path="res://demo/data_model/address.gd" id="1_p78cr"]
+
+[sub_resource type="Resource" id="Resource_onr0e"]
+script = ExtResource("1_p78cr")
+address = "123 Main St"
+address_line2 = ""
+city = "New York"
+state = "New York"
+postal_code = "10001"
+country = "USA"
+metadata/_custom_type_script = "uid://cn1idu8yykvad"
+
+[resource]
+script = ExtResource("1_8tmu1")
+first_name = "John"
+last_name = "Doe"
+company = "ACME Corp."
+title = "CEO"
+phone_number = "555.JOHNDOE"
+business_address = SubResource("Resource_onr0e")
+metadata/_custom_type_script = "uid://ckkrfanenf78o"

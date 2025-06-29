@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://coak68tnjv6s3"]
+
+[ext_resource type="Script" uid="uid://c6pqp78ud2efi" path="res://addons/gg_resource_resaver/components/rich_text_url_handler.gd" id="1_htbof"]
+
+[node name="RichTextURLHandler" type="Node"]
+script = ExtResource("1_htbof")

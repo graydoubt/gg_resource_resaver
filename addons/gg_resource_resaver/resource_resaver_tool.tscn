@@ -1,0 +1,119 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn5otb2cgbph0"]
+
+[ext_resource type="Script" uid="uid://dufuxknf4ea1e" path="res://addons/gg_resource_resaver/resource_resaver_tool.gd" id="1_mf3s1"]
+[ext_resource type="PackedScene" uid="uid://coak68tnjv6s3" path="res://addons/gg_resource_resaver/components/rich_text_url_handler.tscn" id="2_vaiu7"]
+
+[sub_resource type="SystemFont" id="SystemFont_mf3s1"]
+font_names = PackedStringArray("Monospace")
+font_weight = 500
+
+[node name="GGResourceResaverTool" type="Window" node_paths=PackedStringArray("progress_bar", "status_label", "resave_resources_checkbox", "resave_scenes_checkbox", "show_progress_checkbox", "run_button", "close_button", "info_button")]
+title = "Resource Re-saver"
+initial_position = 2
+size = Vector2i(800, 400)
+transient = true
+exclusive = true
+script = ExtResource("1_mf3s1")
+progress_bar = NodePath("PanelContainer/VBoxContainer/StatusContainer/ProgressBar")
+status_label = NodePath("PanelContainer/VBoxContainer/StatusContainer/StatusLabel")
+resave_resources_checkbox = NodePath("PanelContainer/VBoxContainer/VBoxContainer/ResaveResourceCheckBox")
+resave_scenes_checkbox = NodePath("PanelContainer/VBoxContainer/VBoxContainer/ResaveScenesCheckBox")
+show_progress_checkbox = NodePath("PanelContainer/VBoxContainer/VBoxContainer/ShowProgressCheckBox")
+run_button = NodePath("PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/RunButton")
+close_button = NodePath("PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/CloseButton")
+info_button = NodePath("PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/MoreInfoButton")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/mono_font = SubResource("SystemFont_mf3s1")
+bbcode_enabled = true
+text = "This tool simply scans your entire Godot project, looks for files that end with \"[code].tres[/code]\", loads, and re-saves them.
+
+This is useful after you've modified a [code].gd[/code] script that extends the [url=help:class_name:Resource][code]Resource[/code][/url] class and added or removed an exported property: It forces all relevant [code].tres[/code] files to be updated and be in sync with the class definition.
+
+[b]Note:[/b] If re-saving [code].tscn[/code] files, it is best to first [i]close all scenes[/i] and avoid focusing the editor until processing is complete."
+
+[node name="RichTextURLHandler" parent="PanelContainer/VBoxContainer/RichTextLabel" instance=ExtResource("2_vaiu7")]
+
+[node name="StatusContainer" type="BoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/VBoxContainer/StatusContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="StatusLabel" type="Label" parent="PanelContainer/VBoxContainer/StatusContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+clip_text = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResaveResourceCheckBox" type="CheckBox" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Re-save .tres files"
+
+[node name="ResaveScenesCheckBox" type="CheckBox" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Re-save .tscn files"
+
+[node name="ShowProgressCheckBox" type="CheckBox" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Show Progress (slower, but editor doesn't \"hang\" while processing)"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RunButton" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Run"
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Close"
+
+[node name="Control3" type="Control" parent="PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MoreInfoButton" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "More Info"
+
+[node name="Control4" type="Control" parent="PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

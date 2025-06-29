@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MyItemType" load_steps=2 format=3 uid="uid://bthyxeg6hoxbj"]
+
+[ext_resource type="Script" uid="uid://duw1o0ynp2iob" path="res://demo/data_model/item_type.gd" id="1_76mhn"]
+
+[resource]
+script = ExtResource("1_76mhn")
+name = "Iron Ore"
+description = "A chunk of iron ore."
+stats = {}
+metadata/_custom_type_script = "uid://duw1o0ynp2iob"
