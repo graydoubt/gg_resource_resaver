@@ -1,33 +1,31 @@
 # Resource Resaver Tool
 
-This "Resource Resaver" tool is a small addon that automates re-saving all `.tres` files in your project.
-This is useful if you've modified a resource class definition (`.gd` file) and need to update all corresponding `.tres` files.
+The Resource Resaver is a small Godot addon that automatically re-saves all `.tres` resource files in your project.
+It's designed to keep your serialized resource files up-to-date after making changes to the associated `.gd` resource scripts.
+
+The tool can be invoked from the `Project` menu. Select `Tools`, `Re-save Resources...`:
+
+![Resource Re-saver Tool Window Screenshot](screenshot.png)
 
 
-## Why do I need this?
+## The Problem It Solves
 
-This tool is intended to ensure all resources are in sync and to prevent noisy diffs with regards to version control.
-This is especially helpful in team environments when merging feature branches.
+Godot resources are made up of:
 
+- A resource class (the `.gd` script extending `Resource`)
+- One or more serialized resource files (the `.tres` file) saved to disk
 
-### The Problem
+When you update a resource script (a `.gd` file that extends `Resource`), Godot does not automatically update the `.tres` files that depend on it, unless you open and save them manually in the editor.
+This can lead to inconsistencies in the on-disk representation of your resources, especially in larger, data-driven projects.
 
-Resources consist of two parts:
-The resource class definition, which is the `.gd` script that `extends Resource`, and any resources created from it, which are the `.tres` files that essentially represent serialized objects written to disk.
+While these outdated `.tres` files will still work at runtime, they can cause version control issues in team environments:
 
-After modifying a resource class definition, Godot does not automatically change all affected resources in your project.
-It updates only resources that are explicitly edited/saved in the inspector.
+- Outdated resources may appear as modified unexpectedly.
+- Merge conflicts can occur if teammates unknowingly edit resources missing recent changes.
 
-Especially in larger, heavily data-driven projects, this means the `.tres` resources on disk become outdated.
-They still function as intended at runtime, so there is no logical issue here.
-It merely means that, if the resource is saved again, it will result in a change in the on-disk representation.
+This addon solves that by re-saving all `.tres` files in bulk, ensuring they match the current definition of their associated scripts.
 
-This becomes problematic in a team environment if one developer modifies a resource class definition, by adding or removing a property, but without updating all of the affected resources.
-
-If another developer temporarily edits the resource missing the change, or modifies a scene that includes an in-line resource missing the change, the pull request from developer B will potentially include changes to seemingly unrelated resource files, which may show up as a merge conflict.
-
-This scenario can be avoided if the developer modifying the resource class definition uses this "Resource Resaver" addon to ensure that all affected resources are up-to-date.
-It eliminates the need to manually open and save each resource to force the update.
+In collaborative projects, this avoids confusing diffs and merge conflicts when someone unknowingly edits an outdated resource and prevents inconsistencies from surfacing later in development.
 
 
 ## Installation
@@ -43,5 +41,4 @@ Navigate to `Project`, `Tools`, `Re-save Resources...` to open the tool and pres
 
 ## Acknowledgements
 
-This tool was developed in response to [this Reddit post](https://www.reddit.com/r/godot/comments/1j98gje/is_there_any_way_to_update_all_resources_of_a/),
-which also details the problem scenario.
+This tool was created in response to [this Reddit post](https://www.reddit.com/r/godot/comments/1j98gje/is_there_any_way_to_update_all_resources_of_a/), which also outlines the real-world problem it helps solve.
